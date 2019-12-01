@@ -1,34 +1,10 @@
 import RPi.GPIO as GPIO
-import pyaudio
 import  time
 import struct
-from scipy.fftpack import fft, fftfreq
-import scipy
 import random
-import aubio
 import numpy as num
 import threading
 import sys
-
-
-#####Var#####
-BUFFER_SIZE             = 2048 * 4
-CHANNELS                = 1
-FORMAT                  = pyaudio.paFloat32
-METHOD                  = "default"
-SAMPLE_RATE             = 44100
-HOP_SIZE                = BUFFER_SIZE//2
-PERIOD_SIZE_IN_FRAME    = HOP_SIZE
-p = pyaudio.PyAudio()
-
-onOff = True
-initialGPIO = False
-
-#Aubio pitch detection object.
-pDetection = aubio.pitch(METHOD, BUFFER_SIZE, HOP_SIZE, SAMPLE_RATE)
-pDetection.set_unit("Hz")
-# Frequency < -40 dB will be considered as a silence.
-pDetection.set_silence(-40)
 
 #Pins
 R = 17
